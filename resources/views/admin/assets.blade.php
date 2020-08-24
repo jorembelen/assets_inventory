@@ -107,7 +107,7 @@
                                                         @if ( $asset->status == 0 )
                                                         <a href="#checkOut{{ $asset->id}}" data-toggle="modal"><span class="badge badge-success">Assignable</span></a>
                                                         @elseif ( $asset->status == 1 )
-                                                        <a href="{{ route('assigned', $asset->id) }}"> <span class="badge badge-success">Assigned to {{ $asset->emp_id}}</a>
+                                                        <a href="{{ route('assigned', $asset->id) }}"> <span class="badge badge-primary">Assigned to {{ $asset->emp_id}}</a>
                                                         @else
                                                         <a href="/scrap#!"> <span class="badge badge-danger">Scrap</a>  
                                                         @endif

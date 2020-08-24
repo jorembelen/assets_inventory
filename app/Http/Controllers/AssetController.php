@@ -25,8 +25,8 @@ class AssetController extends Controller
     public function index()
     {
 
-        $assets = Asset::wherestatus('1', '&&', '0')
-        // ->where('status', '=', 0)
+        $assets = Asset::where('status', '0')
+        ->orWhere('status', '=', 1)
         ->with('employees')
         ->latest()
         ->paginate(10);
