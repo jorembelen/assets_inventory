@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Return {{ $checkOut->assets->description}} ?</h4>
+                <h4 class="modal-title" id="myModalLabel">Return {{ $checkOut->assets->description}} to IT?</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" method="POST" action="{{ route('checkIns.store') }}">
@@ -52,7 +52,7 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-3 col-form-label">Remarks: </label>
                     <div class="col-9">
-                        <input type="text" class="form-control" name="notes" id="notes" placeholder="Enter Remarks">
+                        <textarea class="form-control" rows="5" name="notes" id="notes" placeholder="Enter Remarks"></textarea>
                     </div>
                 </div>
 

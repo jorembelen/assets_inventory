@@ -32,22 +32,24 @@
                                         <p class="sub-header">
                                             DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>.
                                         </p> --}}
-
+                                        <h5>{{ $checkOuts->count() }} record(s) found.</h5>
                                         <table id="datatable-buttons" class="table m-0 table-colored-bordered table-bordered-blue" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
     
                                             <thead>
                                             <tr>
                                                 <th>SN</th>
                                                 <th>Type</th>
+                                                <th>RITCCO</th>
                                                 <th>Badge</th>
                                                 <th>Name</th>
                                                 {{-- <th>Designation</th> --}}
                                                 <th>Location</th>
-                                                {{-- <th>UnitCode</th> --}}
+                                                <th>UnitCode</th>
                                                 <th>Description</th>
                                                 <th>Serial No.</th>
-                                                {{-- <th>Mobile No.</th> --}}
-                                                <th>Transactions Date</th>
+                                                <th>Mobile No.</th>
+                                                <th>Date</th>
+                                                <th>Remarks</th>
                                                 <th>Transactions</th>
                                                 <th>Status</th>
                                             </tr>
@@ -60,22 +62,24 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $checkOut->assets->type}}</td>
+                                                    <td>{{ $checkOut->assets->ritcco}}</td>
                                                     <td>{{ $checkOut->employees->badge}}</td>
                                                     <td>{{ $checkOut->employees->name}}</td>
                                                     {{-- <td>{{ $checkOut->employees->designation}}</td> --}}
                                                     <td>{{ $checkOut->employees->location}}</td>
-                                                    {{-- <td>{{ $checkOut->employees->unit_code}}</td> --}}
+                                                    <td>{{ $checkOut->employees->unit_code}}</td>
                                                     <td>{{ $checkOut->assets->description}}</td>
                                                     <td>{{ $checkOut->assets->serial_number}}</td>
-                                                    {{-- <td>{{ $checkOut->assets->mobile_number}}</td> --}}
+                                                    <td>{{ $checkOut->assets->mobile_number}}</td>
                                                     <td>{{ $checkOut->date_issued->format('M-d-Y')}}</td>
+                                                    <td>{{ $checkOut->notes}}</td>
                                                     <td>{{ $checkOut->remarks}}</td>
                                                    
                                                     <td>
                                                         @if ( $checkOut->status == 1 )
-                                                        <span class="badge badge-success">Active</span>
+                                                        <a href="{{ route('assigned', $checkOut->id) }}"> <span class="badge badge-success">Active</a>
                                                         @else
-                                                        <span class="badge badge-danger">Inactive</span>
+                                                        <a href="{{ route('history.edit', $checkOut->id) }}"> <span class="badge badge-danger">Inactive</a>
                                                         @endif
                                                     </td>
                                                   
@@ -99,8 +103,5 @@
                     @include('includes.checkIn')
                     @endforeach
 
-                    {{-- @foreach ($assets as $asset)
-                    @include('includes.checkOut')
-                    @endforeach --}}
 
 @endsection

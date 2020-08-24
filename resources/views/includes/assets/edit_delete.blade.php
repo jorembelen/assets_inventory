@@ -4,12 +4,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel"><img class="icon-colored" src="/admin/assets/images/icons/edit_image.svg" title="edit_image.svg"> Update {{ $asset->description}}</h4>
+                <h4 class="modal-title" id="myModalLabel"><img class="icon-colored" src="/admin/assets/images/icons/multiple_devices.svg" title="edit_image.svg"> Update {{ $asset->description}}</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" method="POST" action="{{ route('assets.update', $asset->id) }}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="user" value="{{ Auth::user()->name }}">
                     <div class="form-group row">
                         <label for="type" class="col-3 col-form-label">Type</label>
                         <div class="col-9">
@@ -30,6 +31,13 @@
                                 <option value="Accessories">Accessories</option>
                                 <option value="USB">USB</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="type" class="col-3 col-form-label">RITCCO No.</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" value="{{ $asset->ritcco }}" name="ritcco">
                         </div>
                     </div>
 
@@ -62,15 +70,15 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="type" class="col-3 col-form-label">Date Purchased</label>
+                        <label for="type" class="col-3 col-form-label"> Purchased Date</label>
                         <div class="col-9">
-                            <input type="date" class="form-control" value="{{ $asset->date_purchased }}" name="date_purchased">
+                            <input type="date" class="form-control" value="{{ $asset->purchased_date ? $asset->purchased_date->toDateString() : null }}" name="purchased_date">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="type" class="col-3 col-form-label">Remarks</label>
                         <div class="col-9">
-                            <input type="text" class="form-control" value="{{ $asset->remarks }}" name="remarks">
+                            <textarea class="form-control" rows="3"  name="remarks">{{ $asset->remarks }}</textarea>
                         </div>
                     </div>
 
@@ -96,7 +104,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel"><img class="icon-colored" src="/admin/assets/images/icons/remove_image.svg" title="edit_image.svg"> Delete {{ $asset->description }}</h4>
+                        <h4 class="modal-title" id="myModalLabel"><img class="icon-colored" src="/admin/assets/images/icons/multiple_devices.svg" title="edit_image.svg"> Delete {{ $asset->description }}</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal" method="POST" action="{{ route('assets.destroy', $asset->id) }}">

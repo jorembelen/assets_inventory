@@ -66,7 +66,7 @@
                                                     <a href="/checkOuts"> <span class="badge badge-warning">Assigned to </span></a> {{ $asset->employees->badge}} - {{ $asset->employees->name}} 
                                                         @endif
                                                     </td>
-                                                
+                                                  
                                                 </tr>
                                                 @endforeach
                                           

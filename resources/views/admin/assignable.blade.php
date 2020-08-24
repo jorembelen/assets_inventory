@@ -37,16 +37,19 @@
                                             {{-- <button type="button" class="btn btn-primary btn-rounded width-sm waves-effect waves-light" data-toggle="modal" data-target="#add"> <i class="fas fa-plus"></i> Add</button> --}}
                                           </p>               
                                        
-
-                                        <table id="datatable" class="table m-0 table-colored-bordered table-bordered-blue" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                          <h5>{{ $assets->count() }} record(s) found.</h5>
+                                        <table id="datatable-buttons" class="table m-0 table-colored-bordered table-bordered-blue" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
     
                                             <thead>
                                             <tr>
-                                                <th>SN</th>
+                                                <th>ID</th>
                                                 <th>Type</th>
+                                                <th>RITCCO</th>
                                                 <th>Description</th>
                                                 <th>Serial No.</th>
+                                                <th>Remarks</th>
                                                 <th>Status</th>
+                                                <th>Tools</th>
                                             </tr>
                                             </thead>
     
@@ -55,10 +58,12 @@
                                                 @foreach ($assets as $asset)
                                                 {{-- @if ( $asset->status == 0 ) --}}
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $asset->id }}</td>
                                                     <td>{{ $asset->type}}</td>
+                                                    <td>{{ $asset->ritcco}}</td>
                                                     <td>{{ $asset->description}}</td>
                                                     <td>{{ $asset->serial_number}}</td>
+                                                    <td>{{ $asset->remarks}}</td>
                                                     <td>
                                                         
                                                         @if ( $asset->status == 0 )
@@ -66,6 +71,19 @@
                                                         @else
                                                     <a href="/checkOuts"> <span class="badge badge-warning">Assigned to </span></a> {{ $asset->employees->badge}} - {{ $asset->employees->name}} 
                                                         @endif
+                                                    </td>
+
+                                                    <td>
+
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-blue dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-chevron-down"></i> </button>
+                                                            <div class="dropdown-menu">
+
+                                                                <a class="btn btn-outline-success btn-rounded waves-effect width-md waves-light" role="button" data-toggle="modal" data-target="#previous{{ $asset->id }}"> <i class="  fas fa-info"></i> Info</a>
+                                                               
+                                                            </div>
+                                                        </div>
+
                                                     </td>
                                                 
                                                 </tr>
@@ -87,6 +105,7 @@
 
                     @foreach ($assets as $asset)
                     @include('includes.checkOut')
+                    @include('includes.assets.info_prev')
                     @endforeach
 
 

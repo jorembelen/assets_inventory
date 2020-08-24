@@ -32,10 +32,10 @@
                                     <div class="card-box table-responsive">
                                         <h4 class="header-title"></h4>
                                         <p class="sub-header">
-                                            <a href="{{ url('/employees' ) }}" type="button" class="btn btn-success btn-rounded width-sm waves-effect waves-light"> <i class="fas fa-arrow-left"></i> Back</a>    
+                                            <a href="{{ url('/search/employees' ) }}" type="button" class="btn btn-success btn-rounded width-sm waves-effect waves-light"> <i class="fas fa-arrow-left"></i> Back</a>    
                                         </p>
 
-
+                                        <h5>{{ $data->count() }} record(s) found.</h5>
                                                     <table id="datatable-buttons" class="table m-0 table-colored-bordered table-bordered-blue" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                         
                                                         <thead>
@@ -44,6 +44,7 @@
                                                             <th>Badge</th>
                                                             <th>Name</th>
                                                             <th>Designation</th>
+                                                            <th>Nationality</th>
                                                             <th>Location</th>
                                                             <th>Unit Code</th>
                                                             <th>Remarks</th>
@@ -59,16 +60,21 @@
                                                             <td>{{ $employee->badge }}</td>
                                                             <td>{{ $employee->name }}</td>
                                                             <td>{{ $employee->designation }}</td>
+                                                            <td>{{ $employee->nationality }}</td>
                                                             <td>{{ $employee->location }}</td>
                                                             <td>{{ $employee->unit_code }}</td>
                                                             <td>{{ $employee->remarks }}</td>
                                                             <td>
-                                                                <div class="btn-group btn-group-justified text-white mb-2">
-                                                                    
-                                                                    <a class="btn btn-primary waves-effect waves-light" role="button" data-toggle="modal" data-target="#info{{ $employee->badge }}"><i class=" fas fa-info"></i></a>
-                                                                    <a class="btn btn-warning waves-effect waves-light" role="button" data-toggle="modal" data-target="#editEmp{{ $employee->badge }}"> <i class="  far fa-edit"></i></a>
-                                                                    <a class="btn btn-danger waves-effect waves-light" role="button" data-toggle="modal" data-target="#delete{{ $employee->badge }}"> <i class="  fas fa-times"></i></a>
-                                                                   
+                                                                <div class="btn-group">
+                                                                    <button type="button" class="btn btn-blue dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-chevron-down"></i> </button>
+                                                                    <div class="dropdown-menu">
+        
+                                                                        <a class="btn btn-outline-primary btn-rounded waves-effect width-md waves-light" role="button" data-toggle="modal" data-target="#info{{ $employee->badge }}"><i class=" fas fa-info"></i> Info</a>
+                                                                        <a class="btn btn-outline-warning btn-rounded waves-effect width-md waves-light" data-toggle="modal" data-target="#editEmp{{ $employee->badge }}"> <i class="  far fa-edit"></i> Update</a>
+                                                                        <a class="btn btn-outline-danger btn-rounded waves-effect width-md waves-light" role="button" data-toggle="modal" data-target="#delete{{ $employee->badge }}"> <i class="fas fa-trash-alt"></i> Delete</a>
+                                                                       
+                                                                       
+                                                                    </div>
                                                                 </div>
                                                             </td>
                                                         </tr>

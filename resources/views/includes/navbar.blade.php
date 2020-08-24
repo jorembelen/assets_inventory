@@ -39,11 +39,14 @@
                             <div class="dropdown-divider"></div>
 
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
                                 <i class="fe-log-out"></i>
                                 <span>Logout</span>
                             </a>
-
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </div>
                     </li>
 
@@ -54,14 +57,14 @@
 
                 <!-- LOGO -->
                 <div class="logo-box">
-                    <a href="index.html" class="logo text-center">
+                    <a href="/home" class="logo text-center">
                         <span class="logo-lg">
-                            <img src="/admin/assets/images/logo-light.png" alt="" height="25">
+                            <img src="/admin/assets/images/logo.png" alt="" height="55">
                             <!-- <span class="logo-lg-text-light">UBold</span> -->
                         </span>
                         <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->
-                            <img src="/admin/assets/images/logo-sm.png" alt="" height="28">
+                            <img src="/admin/assets/images/logo.png" alt="" height="28">
                         </span>
                     </a>
                 </div>

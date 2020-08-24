@@ -16,27 +16,56 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'name' => 'Jorem Belen',
+            'username' => 'jorem.belen',
             'email' => 'jorembelen@gmail.com',
             'password' => bcrypt('password'),
         ]);
 
-        Asset::create([
-            'ritcco' => '30-00235',
-            'type' => 'Desktop',
-            'description' => 'HP PRO 500 MT',
-            'serial_number' => 'TRF2080785',
-            'status' => '0',
-            'asset_number' => 'RCLCD-00235',
+        User::create([
+            'name' => 'Aslam Khan',
+            'username' => 'aslam.khan',
+            'email' => 'aslam.khan@rezayat.net',
+            'password' => bcrypt('man602'),
         ]);
 
-        Asset::create([
-            'ritcco' => '30-00226',
-            'type' => 'Desktop',
-            'description' => 'HP 3400 MT',
-            'serial_number' => 'TRF20807V5',
-            'status' => '0',
-            'asset_number' => 'RCLCD-00225',
+        User::create([
+            'name' => 'Jilbert Mejia',
+            'username' => 'jilbert.mejia',
+            'email' => 'jilbert.mejia@rezayat.net',
+            'password' => bcrypt('man602'),
         ]);
+
+        User::create([
+            'name' => 'Kenneth Magalona',
+            'username' => 'kenneth.magalona',
+            'email' => 'kenneth.magalona@rezayat.net',
+            'password' => bcrypt('man602'),
+        ]);
+
+        User::create([
+            'name' => 'Ahmed Elawaad',
+            'username' => 'ahmed.elawaad',
+            'email' => 'ahmed.elawaad@rezayat.net',
+            'password' => bcrypt('man602'),
+        ]);
+
+        // Asset::create([
+        //     'ritcco' => '30-00235',
+        //     'type' => 'Desktop',
+        //     'description' => 'HP PRO 500 MT',
+        //     'serial_number' => 'TRF2080785',
+        //     'status' => '0',
+        //     'asset_number' => 'RCLCD-00235',
+        // ]);
+
+        // Asset::create([
+        //     'ritcco' => '30-00226',
+        //     'type' => 'Desktop',
+        //     'description' => 'HP 3400 MT',
+        //     'serial_number' => 'TRF20807V5',
+        //     'status' => '0',
+        //     'asset_number' => 'RCLCD-00225',
+        // ]);
 
         // Employee::create([
         //     'name' => 'Jorem Belen',

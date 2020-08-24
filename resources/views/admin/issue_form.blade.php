@@ -96,13 +96,18 @@ h2 {
                     <table id="print" class="table table-bordered mb-0">
                     <thead>
                         <tr>
+                            @foreach ($checkOuts as $checkOut)
                                                 <th>Type</th>
+                                                @if($checkOut->assets->type == 'Desktop' | $checkOut->assets->type == 'Laptop')
+                                                <th>RITCCO NO</th>
+                                                @endif
                                                 <th>Description</th>
                                                 <th>Serial No.</th>
                                                 <th>Mobile No.</th>
                                                 <th>Issued Date</th>
                                                 <th>Remarks</th>
                                             </tr>
+                                            @endforeach
                                             </thead>
     
     
@@ -110,6 +115,9 @@ h2 {
                                                 @foreach ($checkOuts as $checkOut)
                                                 <tr>
                                                     <td>{{ $checkOut->assets->type}}</td>
+                                                    @if($checkOut->assets->type == 'Desktop' | $checkOut->assets->type == 'Laptop')
+                                                    <td>{{ $checkOut->assets->ritcco}}</td>
+                                                    @endif
                                                     <td>{{ $checkOut->assets->description}}</td>
                                                     <td>{{ $checkOut->assets->serial_number}}</td>
                                                     <td>{{ $checkOut->assets->mobile_number}}</td>
@@ -170,7 +178,7 @@ h2 {
         <div class="hidden-print mt-4" style="text-align:center;">
             <div class="text-center d-print-none">
                 <a href="javascript:window.print()" class="btn btn-blue waves-effect waves-light"><i class="fa fa-print mr-1"></i> Print</a>
-                <a href="/checkOuts" class="btn btn-info waves-effect waves-light">Close</a>
+                <a href="/search/assets" class="btn btn-info waves-effect waves-light">Close</a>
             </div>
         </div>
     </div>

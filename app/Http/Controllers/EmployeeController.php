@@ -24,6 +24,12 @@ class EmployeeController extends Controller
         return view('admin.employees', compact('employees', $employees));
     }
 
+    public function indexSearch()
+    {
+
+        return view('includes.employees.index');
+    }
+
     public function search(Request $request)
     {
        
@@ -37,6 +43,13 @@ class EmployeeController extends Controller
         ->with('data', $data);
     }
     
+    public function indexImport()
+    {
+        $employees = Employee::paginate(10);
+
+        return view('includes.employees.import', compact('employees', $employees));
+    }
+
     public function import(Request $request) 
     {
         

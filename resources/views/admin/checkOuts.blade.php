@@ -14,8 +14,8 @@
                     <div class="page-title-box">
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Asset Management</a></li>
+                                <li class="breadcrumb-item"><a href="/home#!">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/search/assets#!">Asset Management</a></li>
                                 <li class="breadcrumb-item active">Assigned Assets</li>
                             </ol>
                         </div>
@@ -29,7 +29,35 @@
                                 <div class="col-12">
                                     <div class="card-box table-responsive">
 
-                                        <table id="datatable-buttons" class="table m-0 table-colored-bordered table-bordered-blue" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <div class="mb-3">
+                                            <form action="{{route('search.assigned')}}" method="POST">
+                                                @csrf
+                                            <div class="row">
+                                                <div class="col-12 text-sm-center form-inline">
+                                                    <div class="form-group mr-2">
+                                                        <button id="demo-btn-addrow" class="btn btn-primary btn--icon-text"><i class=" fab fa-sistrix"></i> Search</button>
+                                                    </div>
+                                                </form>
+                                                    <div class="form-group">
+                                                        <input class="form-control" id="search" type="text" name="search" placeholder="Enter Search Value" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{-- <label for="type" class="col-12">Search by:</label> --}}
+                                                        <div class="col-9">
+                                                            <select name="options" id="demo-foo-filter-status" class="custom-select">
+                                                                <option value="emp_id">Badge Number</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                  
+                        
+                                                    </div>
+                                                </div>
+
+                                                </div>
+                                                </div>
+
+                                        <table id="datatable-button" class="table m-0 table-colored-bordered table-bordered-blue" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
     
                                             <thead>
                                             <tr>
@@ -38,10 +66,11 @@
                                                 <th>Badge</th>
                                                 <th>Name</th>
                                                 <th>Location</th>
+                                                <th>Unit Code</th>
                                                 <th>Description</th>
                                                 <th>Serial No.</th>
                                                 {{-- <th>Mobile No.</th> --}}
-                                                <th>Transaction Date</th>
+                                                <th>Date</th>
                                                 <th>Remarks</th>
                                                 <th>Action</th>
                                             </tr>
@@ -59,19 +88,21 @@
                                                     <td>{{ $checkOut->employees->name}}</td>
                                                     {{-- <td>{{ $checkOut->employees->designation}}</td> --}}
                                                     <td>{{ $checkOut->employees->location}}</td>
-                                                    {{-- <td>{{ $checkOut->employees->unit_code}}</td> --}}
+                                                    <td>{{ $checkOut->employees->unit_code}}</td>
                                                     <td>{{ $checkOut->assets->description}}</td>
                                                     <td>{{ $checkOut->assets->serial_number}}</td>
                                                     {{-- <td>{{ $checkOut->assets->mobile_number}}</td> --}}
                                                     <td>{{ $checkOut->date_issued->format('M-d-Y')}}</td>
                                                     <td>{{ $checkOut->notes}}</td>
                                                    <td>
-                                                    <button type="button" class="btn btn-warning waves-effect waves-light btn-sm" data-toggle="modal" data-target="#checkIn{{ $checkOut->id }}"><i class="fe-arrow-left-circle"></i> Return</button>
+                                                    
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-primary dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"><i class="fe-printer"></i> Print <i class="mdi mdi-chevron-down"></i> </button>
+                                                        <button type="button" class="btn btn-blue dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-chevron-down"></i> </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="{{ route('issue.form', $checkOut->id) }}">Selected Asset</a>
-                                                            <a class="dropdown-item" href="{{ route('multi.select', $checkOut->emp_id) }}">Multiple Assets</a>
+                                                            <button type="button" class="btn btn-outline-primary btn-rounded waves-effect width-md waves-light" data-toggle="modal" data-target="#edit{{ $checkOut->id }}"><i class="fas fa-edit"></i> Update</button>
+                                                            <button type="button" class="btn btn-outline-warning btn-rounded waves-effect width-md waves-light" data-toggle="modal" data-target="#checkIn{{ $checkOut->id }}"><i class="far fa-arrow-alt-circle-left"></i> Return</button>
+                                                           <a type="button" class="btn btn-outline-success btn-rounded waves-effect width-md waves-light" href="{{ route('issue.form', $checkOut->id) }}"><i class="fe-printer"></i> Selected Asset</a>
+                                                            <a type="button" class="btn btn-outline-danger btn-rounded waves-effect width-md waves-light" href="{{ route('multi.select', $checkOut->emp_id) }}"><i class="fe-printer"></i> Multiple Assets</a>
                                                         </div>
                                                     </div>
                                                   
@@ -82,6 +113,13 @@
                                           
                                             </tbody>
                                         </table>
+
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-center">
+                                                {{ $checkOuts->links() }}
+                                            </ul>
+                                        </nav>
+
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -94,10 +132,7 @@
 
                     @foreach ($checkOuts as $checkOut)
                     @include('includes.checkIn')
+                    @include('includes.checkOut.edit')
                     @endforeach
-
-                    {{-- @foreach ($assets as $asset)
-                    @include('includes.checkOut')
-                    @endforeach --}}
 
 @endsection

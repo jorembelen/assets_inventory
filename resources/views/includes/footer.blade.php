@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    2017 - 2019 &copy; Adminox theme by <a href="#">Coderthemes</a>
+                    RCL | Assets 2020 &copy; Developed by <a href="#">Jorem Belen</a>
                 </div>
             </div>
         </div>

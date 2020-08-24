@@ -17,5 +17,17 @@ class CheckOut extends Model
     }
 
     protected $dates = ['date_issued'];
+
+    public $fillable = [
+        'emp_id',
+        'asset_id',
+        'status',
+        'remarks',
+        'notes',
+        'date_issued',
+        'badge',
+        'name',
+        'user'
+    ];
     
 }

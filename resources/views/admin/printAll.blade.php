@@ -61,7 +61,7 @@
                                                 @foreach ($checkOuts as $checkOut)
 
                                                 <tr>
-                                                  <td><input type="checkbox" name="checkbox[]" value="{{ $checkOut->id }}" checked></td>
+                                                  <td><input id="checkbox" type="checkbox" name="checkbox[]" value="{{ $checkOut->id }}"></td>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $checkOut->assets->type}}</td>
                                                     <td>{{ $checkOut->employees->badge}}</td>
@@ -90,8 +90,6 @@
                     @include('includes.checkIn')
                     @endforeach
 
-                    {{-- @foreach ($assets as $asset)
-                    @include('includes.checkOut')
-                    @endforeach --}}
+                    
 
 @endsection

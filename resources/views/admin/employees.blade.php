@@ -16,8 +16,8 @@
                     <div class="page-title-box">
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Employees</li>
+                                <li class="breadcrumb-item"><a href="/home#!">Dashboard</a></li>
+                                <li class="breadcrumb-item active"><a href="/search/employees#!">Employees</a></li>
                             </ol>
                         </div>
                         <h4 class="page-title">Employees</h4>
@@ -34,27 +34,9 @@
                                             <button type="button" class="btn btn-success btn-rounded width-sm waves-effect waves-light" data-toggle="modal" data-target="#add"> <i class="fas fa-user-plus"></i> Add</button>    
                                         </p>
 
-                                        <div class="custom-dd dd" id="nestable_list_1">
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="2">
-                                                    <div class="dd-handle">
-                                                        Import Employees
-                                                    </div>
-                                                    <ol class="dd-list">
-                                                        <li class="dd-item" data-id="3">
-                                                            <div class="dd-handle">
-                                                                Coffee with the team
-                                                            </div>
-                                                        </li>
-                                                       
-                                                    </ol>
-                                                </li>
-
-                                            </ol>
-                                        </div>
-
+  
                                         <div class="mb-3">
-                                            <form action="{{url('/search')}}" method="POST">
+                                            <form action="{{url('/searchEmployees')}}" method="POST">
                                                 @csrf
                                             <div class="row">
                                                 <div class="col-12 text-sm-center form-inline">
@@ -71,6 +53,7 @@
                                                             <select name="options" id="options" class="form-control">
                                                                 <option value="badge">Badge</option>
                                                                 <option value="name">Name</option>
+                                                                <option value="designation">Designation</option>
                                                                 <option value="location">Location</option>
                                                                 <option value="unit_code">Unit Code</option>
                                                             </select>
@@ -79,6 +62,7 @@
                                                   
                         
                                                     </div>
+                                                    
                                                 </div>
 
                                                 </div>
@@ -92,6 +76,7 @@
                                                             <th>Badge</th>
                                                             <th>Name</th>
                                                             <th>Designation</th>
+                                                            <th>Nationality</th>
                                                             <th>Location</th>
                                                             <th>Unit Code</th>
                                                             <th>Remarks</th>
@@ -107,28 +92,37 @@
                                                             <td>{{ $employee->badge }}</td>
                                                             <td>{{ $employee->name }}</td>
                                                             <td>{{ $employee->designation }}</td>
+                                                            <td>{{ $employee->nationality }}</td>
                                                             <td>{{ $employee->location }}</td>
                                                             <td>{{ $employee->unit_code }}</td>
                                                             <td>{{ $employee->remarks }}</td>
                                                             <td>
-                                                                <div class="btn-group btn-group-justified text-white mb-2">
-                                                                    
-                                                                    <a class="btn btn-primary waves-effect waves-light" role="button" data-toggle="modal" data-target="#info{{ $employee->badge }}"><i class=" fas fa-info"></i></a>
-                                                                    <a class="btn btn-warning waves-effect waves-light" role="button" data-toggle="modal" data-target="#editEmp{{ $employee->badge }}"> <i class="  far fa-edit"></i></a>
-                                                                    <a class="btn btn-danger waves-effect waves-light" role="button" data-toggle="modal" data-target="#delete{{ $employee->badge }}"> <i class="  fas fa-times"></i></a>
-                                                                   
+                                                     
+
+                                                                <div class="btn-group">
+                                                                    <button type="button" class="btn btn-blue dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-chevron-down"></i> </button>
+                                                                    <div class="dropdown-menu">
+        
+                                                                        <a class="btn btn-outline-primary btn-rounded waves-effect width-md waves-light" role="button" data-toggle="modal" data-target="#info{{ $employee->badge }}"><i class=" fas fa-info"></i> Info</a>
+                                                                        <a class="btn btn-outline-warning btn-rounded waves-effect width-md waves-light" data-toggle="modal" data-target="#editEmp{{ $employee->badge }}"> <i class="  far fa-edit"></i> Update</a>
+                                                                        <a class="btn btn-outline-danger btn-rounded waves-effect width-md waves-light" role="button" data-toggle="modal" data-target="#delete{{ $employee->badge }}"> <i class="fas fa-trash-alt"></i> Delete</a>
+                                                                       
+                                                                       
+                                                                    </div>
                                                                 </div>
+
                                                             </td>
                                                         </tr>
                                                         @endforeach
                                                         </tbody>
                                                     </table>
                                                    
-            
-                                        
-                                        <div class="col-12 text-center">
-                                            <span>{{ $employees->links() }}</span>          
-                                        </div>
+                                                    <nav aria-label="Page navigation example">
+                                                        <ul class="pagination justify-content-center">
+                                                            {{ $employees->links() }}
+                                                        </ul>
+                                                    </nav>
+                                       
                                     </div>
                                 </div>
                             </div> <!-- end row -->

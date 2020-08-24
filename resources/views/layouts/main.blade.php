@@ -9,7 +9,7 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
+        <link rel="shortcut icon" href="/admin/assets/images/rcl.ico">
 
         <!-- C3 Chart css -->
         <link href="/admin/assets/libs/c3/c3.min.css" rel="stylesheet" type="text/css" />

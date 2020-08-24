@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 use Validator;
+use App\Employee;
 use App\CheckOut;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\CheckOutsImport;
 
 class CheckOutController extends Controller
 {
@@ -17,9 +21,65 @@ class CheckOutController extends Controller
      */
     public function index()
     {
+        $employees = Employee::all();
+
+        $checkOuts = CheckOut::wherestatus('1')->with('employees')->paginate(10);
+
+        return view('admin.checkOuts')
+        ->with('employees', $employees)
+        ->with('checkOuts', $checkOuts);
+    }
+
+    public function assigned($id)
+    {
+        $employees = Employee::all();
+
+        $checkOuts = CheckOut::wherestatus('1')->where('asset_id', $id)->get();
+
+        // dd($checkOuts);
+        return view('includes.checkOut.search')
+        ->with('employees', $employees)
+        ->with('checkOuts', $checkOuts);
+    }
+
+    public function indexImport()
+    {
         $checkOuts = CheckOut::wherestatus('1')->with('employees')->get();
 
-        return view('admin.checkOuts', compact('checkOuts', $checkOuts));
+        return view('includes.assets.importIssued', compact('checkOuts', $checkOuts));
+    }
+
+    public function import(Request $request) 
+    {
+        
+
+        $validator = Excel::import(new CheckOutsImport,request()->file('file'));
+        
+           
+        return redirect('/checkOuts')->with('success', 'Assets Has Been imported Successfully');
+    }
+
+    public function searchAssigned(Request $request)
+    {
+       
+        $employees = Employee::all();
+
+        $str = $request->input('search');
+        $option = $request->input('options');
+        $checkOuts = CheckOut::where($option, 'LIKE' , '%'.$str.'%')->wherestatus('1')->get();
+        
+        return view('includes.checkOut.search')
+        ->with('employees', $employees)
+        ->with('checkOuts', $checkOuts);
+    }
+
+    public function active()
+    {
+        $checkOuts = CheckOut::wherestatus('1')
+        ->latest()
+        ->get();
+
+        return view('includes.checkOut.active', compact('checkOuts', $checkOuts));
     }
 
     public function history()
@@ -27,6 +87,19 @@ class CheckOutController extends Controller
         $checkOuts = CheckOut::with('employees')->get();
 
         return view('admin.history', compact('checkOuts', $checkOuts));
+    }
+
+    public function historyEdit($id)
+    {
+        $employees = Employee::all();
+
+        $checkOuts = CheckOut::with('employees')->where('id', $id)->paginate(10);
+
+        // dd($checkOuts);
+
+        return view('includes.checkOut.history_edit')
+        ->with('employees', $employees)
+        ->with('checkOuts', $checkOuts);
     }
 
     public function print($id)
@@ -51,14 +124,16 @@ class CheckOutController extends Controller
 
     public function printSelect(Request $request)
     {
-        // $data = $request->input('checkbox');
+        if ($request->checkbox == 0) {
+            return back()->with('errors', 'Please select atleast one record!');
+        }
 
         $checkOuts = CheckOut::whereIn('id', $request->checkbox)->get();
 
       
         // dd($checkOuts);
 
-        return view('admin.issue_form', compact('checkOuts', $checkOuts));
+        return view('includes.checkOut.print', compact('checkOuts', $checkOuts));
     }
 
     /**
@@ -143,10 +218,35 @@ class CheckOutController extends Controller
      * @param  \App\CheckOut  $checkOut
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CheckOut $checkOut)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'emp_id' => 'required',
+            'date_issued' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('errors', $validator->messages()->all()[0])->withInput();
+        }
+
+        
+
+        $checkOut = CheckOut::findOrFail($id);
+
+        $checkOut->emp_id = $request->input('emp_id');
+        $checkOut->date_issued = $request->input('date_issued');
+        $checkOut->notes = $request->input('notes');
+        $checkOut->user = $request->input('user');
+
+        // dd($checkOut);
+        $checkOut->update();
+
+        // Alert::success('Success', 'Asset Has Been Returned Successfully');
+
+        return redirect('/checkOuts')->with('success', 'Asset Has Been Updated Successfully');
     }
+
+  
 
     /**
      * Remove the specified resource from storage.

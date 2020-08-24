@@ -21,6 +21,22 @@ class Asset extends Model
         return $this->belongsTo(Employee::class, 'emp_id')->withDefault();
     }
 
+    protected $dates = [
+        'purchased_date'
+    ];
 
+    public $fillable = [
+        'emp_id',
+        'type',
+        'description',
+        'ritcco',
+        'serial_number',
+        'mobile_number',
+        'asset_number',
+        'purchased_date',
+        'status',
+        'updated_by',
+        'remarks'
+    ];
 
 }

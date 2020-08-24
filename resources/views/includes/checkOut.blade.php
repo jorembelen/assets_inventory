@@ -37,7 +37,7 @@
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-3 col-form-label">Select Employee: </label>
                         <div class="col-9">
-                            <select name="emp_id" class="form-control select2">
+                            <select name="emp_id" class="form-control select2" required>
                                 <option value="">Select</option>
                                 @foreach ($employees as $employee)
                                 <option value="{{ $employee->badge}}">
@@ -52,7 +52,7 @@
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-3 col-form-label">Date Issued: </label>
                         <div class="col-9">
-                            <input class="form-control" id="date_issued" type="date" name="date_issued" >
+                            <input class="form-control" id="date_issued" type="date" name="date_issued" required>
                         </div>
                     </div>
 

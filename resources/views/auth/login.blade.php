@@ -1,71 +1,126 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<head>
+    <meta charset="utf-8" />
+    <title>RCL | Assets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                        @csrf
+    <!-- App css -->
+    <link href="/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
+    <link href="/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/admin/assets/css/app.min.css" rel="stylesheet" type="text/css"  id="app-stylesheet" />
 
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+</head>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+<body class="authentication-bg bg-primary authentication-bg-pattern d-flex align-items-center pb-0 vh-100">
 
-                                @if ($errors->has('email'))
+    <div class="home-btn d-none d-sm-block">
+        <a href="/"><i class="fas fa-home h2 text-white"></i></a>
+    </div>
+
+    <div class="account-pages w-100 mt-5 mb-5">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card mb-0">
+
+                        <div class="card-body p-4">
+
+                            <div class="account-box">
+                                <div class="account-logo-box">
+                                    <div class="text-center">
+                                        <a href="index.html">
+                                            <img src="/admin/assets/images/logo.png" alt="" height="70">
+                                        </a>
+                                    </div>
+                                    <h5 class="text-uppercase mb-1 mt-4">Sign In</h5>
+                                    <p class="mb-0">Login to your Admin account</p>
+                                </div>
+
+                                <div class="account-content mt-4">
+                                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                                        @csrf
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <label for="emailaddress">Email address</label>
+                                                <input id="email" type="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+
+                                @if ($errors->has('username'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('username') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
+                                            </div>
+                                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                {{-- <a href="page-recoverpw.html" class="text-muted float-right"><small>Forgot your password?</small></a> --}}
+                                                <label for="password">Password</label>
+                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                                @if ($errors->has('password'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('password') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                <div class="checkbox checkbox-success">
+                                                    <input id="remember" type="checkbox" checked="">
+                                                    <label for="remember">
+                                                        Remember me
+                                                    </label>
+                                                </div>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row text-center mt-2">
+                                            <div class="col-12">
+                                                <button class="btn btn-md btn-block btn-primary waves-effect waves-light" type="submit">Sign In</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                
+
+                                   
+
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                    <!-- end card-body -->
                 </div>
-            </div>
+                <!-- end card -->
         </div>
+        <!-- end row -->
     </div>
-</div>
-@endsection
+    <!-- end container -->
+    </div>
+    <!-- end page -->
+
+    <!-- Vendor js -->
+    <script src="/admin/assets/js/vendor.min.js"></script>
+
+    <!-- App js -->
+    <script src="/admin/assets/js/app.min.js"></script>
+
+</body>
+
+
+</html>

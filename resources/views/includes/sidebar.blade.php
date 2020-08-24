@@ -14,7 +14,7 @@
                     <li>
                         <a href="/home">
                             <i class="fas fa-tachometer-alt"></i>
-                            <span class="badge badge-success badge-pill float-right">2</span>
+                            <span class="badge badge-success badge-pill float-right">4</span>
                             <span> Dashboard </span>
                         </a>
                         {{-- <ul class="nav-second-level" aria-expanded="false">
@@ -30,9 +30,9 @@
                             <span class="menu-arrow"></span>
                         </a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="/assets">Assets List</a></li>
-                            <li><a href="/assignable">Assignable Assets</a></li>
-                            <li><a href="/checkOuts">Assigned Assets</a></li>
+                            <li><a href="/search/assets#!">Assets List</a></li>
+                            <li><a href="/assignable#!">Assignable Assets</a></li>
+                            <li><a href="/checkOuts#!">Assigned Assets</a></li>
                             {{-- <li><a href="/checkOuts">Issued Items</a></li> --}}
                         </ul>
                     </li>
@@ -44,8 +44,9 @@
                             <span class="menu-arrow"></span>
                         </a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="/history">History</a></li>
-                            {{-- <li><a href="{{ route('select') }}">Print Multiple Items</a></li> --}}
+                            <li><a href="/history#!">History</a></li>
+                            <li><a href="{{ route('active') }}"> Active</a></li>
+                            <li><a href="/scrap#!"> Scrap</a></li>
                         </ul>
                     </li>
 
@@ -56,9 +57,22 @@
                             <span class="menu-arrow"></span>
                         </a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="/employees">Employees List</a></li>
+                            <li><a href="/search/employees#!">Employees List</a></li>
                         </ul>
                     </li>
+
+                     <!-- <li>
+                        <a href="javascript: void(0);">
+                            <i class="fas fa-file-import"></i>
+                            <span>  Import Data</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li><a href="/import#!"> Import Employees</a></li>
+                            <li><a href="{{ route('import.index') }}"> Import Assets</a></li>
+                            <li><a href="{{ route('checkOut.import') }}"> Import Issued Assets</a></li>
+                        </ul>
+                    </li>  -->
         
                 </ul>
 

@@ -20,9 +20,10 @@ class CreateCheckOutsTable extends Migration
             $table->boolean('status');
             $table->string('remarks');
             $table->string('notes')->nullable();
-            $table->date('date_issued');
+            $table->date('date_issued')->default(now());
             $table->integer('badge')->nullable();
             $table->string('name')->nullable();
+            $table->string('user')->nullable();
             $table->timestamps();
         });
     }

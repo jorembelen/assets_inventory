@@ -25,9 +25,15 @@
                                 <option value="Projector">Projector</option>
                                 <option value="Simcard">Simcard</option>
                                 <option value="Tools">Tools</option>
-                                <option value="Accessories">Accessories</option>
                                 <option value="USB">USB</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="type" class="col-3 col-form-label">RITCCO NO.</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" name="ritcco">
                         </div>
                     </div>
 
@@ -60,9 +66,9 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="type" class="col-3 col-form-label">Date Purchased</label>
+                        <label for="type" class="col-3 col-form-label"> Purchased Date</label>
                         <div class="col-9">
-                            <input type="date" class="form-control" name="date_purchased">
+                            <input type="date" class="form-control" name="purchased_date">
                         </div>
                     </div>
 

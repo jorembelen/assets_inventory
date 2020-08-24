@@ -8,6 +8,12 @@
             </div>
             <div class="modal-body">
                 <div class="form-group row">
+                    <label for="inputEmail3" class="col-3 col-form-label">Assigned to: </label>
+                    <div class="col-9">
+                        <h5>{{ $asset->emp_id}} - {{ $asset->employees->name}}</h5>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="inputEmail3" class="col-3 col-form-label">Asset ID - </label>
                     <div class="col-9">
                         <h5>{{ $asset->id}}</h5>
@@ -57,9 +63,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-3 col-form-label">Purchased Date -</label>
+                    <label for="inputEmail3" class="col-3 col-form-label"> Purchased Date -</label>
                     <div class="col-9">
-                        <h5>{{ $asset->date_purchased }}</h5>
+                        <h5>{{ $asset->purchased_date ? $asset->purchased_date->format('M-d-Y') : null }}</h5>
                     </div>
                 </div>
 
@@ -67,6 +73,13 @@
                     <label for="inputEmail3" class="col-3 col-form-label">Remarks -</label>
                     <div class="col-9">
                         <h5>{{ $asset->remarks}}</h5>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-3 col-form-label">Updated by -</label>
+                    <div class="col-9">
+                        <h5>{{ $asset->updated_by}}  ({{ $asset->updated_at ? $asset->updated_at->format('M-d-Y') : null }})</h5>
                     </div>
                 </div>
               
