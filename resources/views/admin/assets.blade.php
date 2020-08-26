@@ -76,8 +76,8 @@
                                             <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Ritcco No.</th>
                                                 <th>Type</th>
+                                                <th>RITCCO</th>
                                                 <th>Description</th>
                                                 <th>Serial No.</th>
                                                 <th>Mobile No.</th>
@@ -94,8 +94,8 @@
                                                 @foreach ($assets as $asset)
                                                 <tr>
                                                     <td>{{ $asset->id }}</td>
-                                                    <td>{{ $asset->ritcco}}</td>
                                                     <td>{{ $asset->type}}</td>
+                                                    <td>{{ $asset->ritcco}}</td>
                                                     <td>{{ $asset->description}}</td>
                                                     <td>{{ $asset->serial_number}}</td>
                                                     <td>{{ $asset->mobile_number}}</td>

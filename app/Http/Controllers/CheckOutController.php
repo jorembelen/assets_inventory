@@ -23,7 +23,10 @@ class CheckOutController extends Controller
     {
         $employees = Employee::all();
 
-        $checkOuts = CheckOut::wherestatus('1')->with('employees')->paginate(10);
+        $checkOuts = CheckOut::wherestatus('1')
+        ->with('employees')
+        ->latest()
+        ->paginate(10);
 
         return view('admin.checkOuts')
         ->with('employees', $employees)
@@ -164,27 +167,14 @@ class CheckOutController extends Controller
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
+
+        $checkOut = CheckOut::create($request->all());
+
         $status = 1;
         $id = $request->input('asset_id');
         $badge = $request->input('emp_id');
 
         DB::update('update assets set status = ?, emp_id = ? where id = ?', [$status, $badge, $id]);
-
-        $checkOut = new CheckOut;
-
-        $checkOut->emp_id = $request->input('emp_id');
-        $checkOut->asset_id = $request->input('asset_id');
-        $checkOut->date_issued = $request->input('date_issued');
-        $checkOut->notes = $request->input('notes');
-        $checkOut->badge = $request->input('badge');
-        $checkOut->name = $request->input('name');
-        $checkOut->remarks = 'received';
-        $checkOut->status = 1;
-
-        // dd($checkOut);
-        $checkOut->save();
-
-        // Alert::success('Success', 'Asset Has Been Returned Successfully');
 
         return redirect('/assets')->with('success', 'Asset Has Been Assigned Successfully');
     }
@@ -229,19 +219,9 @@ class CheckOutController extends Controller
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
-        
-
         $checkOut = CheckOut::findOrFail($id);
 
-        $checkOut->emp_id = $request->input('emp_id');
-        $checkOut->date_issued = $request->input('date_issued');
-        $checkOut->notes = $request->input('notes');
-        $checkOut->user = $request->input('user');
-
-        // dd($checkOut);
-        $checkOut->update();
-
-        // Alert::success('Success', 'Asset Has Been Returned Successfully');
+        $checkOut->update($request->all());
 
         return redirect('/checkOuts')->with('success', 'Asset Has Been Updated Successfully');
     }

@@ -11,6 +11,8 @@
                 <form class="form-horizontal" method="POST" action="{{ route('checkOuts.store') }}">
                     @csrf
                     
+                    <input type="hidden" name="status" value="1">
+                    <input type="hidden" name="remarks" value="received">
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-3 col-form-label">Type: </label>
                         <div class="col-9">

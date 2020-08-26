@@ -32,6 +32,25 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="type" class="col-3 col-form-label">Nationality</label>
+                        <div class="col-9">
+                            <select name="nationality" class="form-control" required>
+                            <option value="">Select Nationality</option>
+                            <option value="SA">Saudi</option>
+                                <option value="PH">Filipino</option>
+                                <option value="BD">Bangladesh</option>
+                                <option value="IN">India</option>
+                                <option value="SL">Sri Lanka</option>
+                                <option value="EG">Egyptian</option>
+                                <option value="NP">Nepal</option>
+                                <option value="JO">Jordanian</option>
+                                <option value="PK">Paskistan</option>
+                                <option value="KE">Kenian</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="type" class="col-3 col-form-label">Location</label>
                         <div class="col-9">
                             <input type="text" class="form-control" name="location">

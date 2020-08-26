@@ -19,7 +19,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::paginate(10);
+        $employees = Employee::latest()
+        ->paginate(10);
 
         return view('admin.employees', compact('employees', $employees));
     }
@@ -93,16 +94,9 @@ class EmployeeController extends Controller
             return back()->with('errors', 'Employees Badge already exist!');
          }
   
-         $employees = new Employee;
-
-         $employees->badge = $request->input('badge');
-         $employees->name = $request->input('name');
-         $employees->designation = $request->input('designation');
-         $employees->location = $request->input('location');
-         $employees->unit_code = $request->input('unit_code');
-         $employees->remarks = $request->input('remarks');
- 
-         $employees->save();
+        Employee::create($request->only(
+            'badge', 'name', 'designation', 'nationality', 'location', 'unit_code', 'remarks'
+        ));
 
          return redirect('/employees')->with('success', 'Employee Has Been Added Successfully');
     }
@@ -150,14 +144,11 @@ class EmployeeController extends Controller
 
         $employees = Employee::findOrFail($badge);
 
-         $employees->badge = $request->input('badge');
-         $employees->name = $request->input('name');
-         $employees->designation = $request->input('designation');
-         $employees->location = $request->input('location');
-         $employees->unit_code = $request->input('unit_code');
-         $employees->remarks = $request->input('remarks');
+        $employees->update($request->only(
+            'badge', 'name', 'designation', 'nationality', 'location', 'unit_code', 'remarks'
+        ));
  
-         $employees->update();
+        //  $employees->update();
 
          return redirect('/employees')->with('success', 'Employee Has Been Updated Successfully');
     }

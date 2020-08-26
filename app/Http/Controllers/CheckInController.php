@@ -57,22 +57,13 @@ class CheckInController extends Controller
         DB::update('update assets set status = ? where id = ?', [$status, $id]);
 
         
+        $checkIn = CheckOut::create($request->all());
+
         $checkOut_id = $request->input('checkOut_id');
         $checkOut_status = '0';
 
         DB::update('update check_outs set status = ? where id = ?', [$checkOut_status, $checkOut_id]);
-
-        $checkIn = new CheckOut;
-
-        $checkIn->emp_id = $request->input('emp_id');
-        $checkIn->asset_id = $request->input('asset_id');
-        $checkIn->date_issued = $request->input('date_issued');
-        $checkIn->notes = $request->input('notes');
-        $checkIn->remarks = 'returned';
-        $checkIn->status = 0;
-
-        // dd($checkIn);
-        $checkIn->save();
+        
 
         Alert::success('Success', 'Asset Has Been Returned Successfully');
 

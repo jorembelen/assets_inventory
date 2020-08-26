@@ -58,7 +58,6 @@ class AssetController extends Controller
         $str = $request->input('search');
         $option = $request->input('options');
         $data = Asset::where($option, 'LIKE' , '%'.$str.'%')->get();
-        // return view('includes.employees.search')->with(['employees' => $employees , 'search' => true ]);
         return view('includes.assets.search')
         ->with('data', $data)
         ->with('employees', $employees);
@@ -148,10 +147,7 @@ class AssetController extends Controller
 
         $asset->status = 2;
 
-        // dd($asset);
         $asset->update();
-
-        // Alert::success('Success', 'Asset Has Been Returned Successfully');
 
         return redirect('/assets')->with('success', 'Asset Has Been Scrapped Successfully');
     }
@@ -164,10 +160,8 @@ class AssetController extends Controller
 
         $asset->status = 0;
 
-        // dd($asset);
         $asset->update();
 
-        // Alert::success('Success', 'Asset Has Been Returned Successfully');
 
         return redirect('/assets')->with('success', 'Asset Has Been Restored Successfully');
     }
@@ -200,25 +194,13 @@ class AssetController extends Controller
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
-        // $input = $request->all();
 
         if (Asset::where('serial_number', '=', Input::get('serial_number'))->exists()) {
 
             return back()->with('errors', 'Serial Number already exist!');
          }
   
-         $assets = new Asset;
-
-         $assets->ritcco = $request->input('ritcco');
-         $assets->type = $request->input('type');
-         $assets->description = $request->input('description');
-         $assets->serial_number = $request->input('serial_number');
-         $assets->mobile_number = $request->input('mobile_number');
-         $assets->asset_number = $request->input('asset_number');
-         $assets->purchased_date = $request->input('purchased_date');
-         $assets->remarks = $request->input('remarks');
- 
-         $assets->save();
+         Asset::create($request->all());
 
          return redirect('/assets')->with('success', 'Asset Has Been Added Successfully');
     }
@@ -266,17 +248,7 @@ class AssetController extends Controller
 
         $assets = Asset::findOrFail($id);
 
-        $assets->ritcco = $request->input('ritcco');
-        $assets->type = $request->input('type');
-        $assets->description = $request->input('description');
-        $assets->serial_number = $request->input('serial_number');
-        $assets->mobile_number = $request->input('mobile_number');
-        $assets->asset_number = $request->input('asset_number');
-        $assets->purchased_date = $request->input('purchased_date');
-        $assets->remarks = $request->input('remarks');
-        $assets->updated_by = $request->input('user');
-
-        $assets->update();
+        $assets->update($request->all());
 
 
          return redirect('/assets')->with('success', 'Asset Has Been Updated Successfully');

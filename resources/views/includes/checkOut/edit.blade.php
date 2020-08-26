@@ -19,6 +19,13 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="type" class="col-3 col-form-label">RITCCO No.</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" value="{{ $checkOut->assets->ritcco }}" name="ritcco" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="inputEmail3" class="col-3 col-form-label">Name: </label>
                         <div class="col-9">
                             <select name="emp_id" class="form-control select2">
@@ -57,7 +64,7 @@
                     <div class="form-group row">
                         <label for="type" class="col-3 col-form-label">Assets No.</label>
                         <div class="col-9">
-                            <input type="text" class="form-control" value="{{ $checkOut->assets->assets_number }}" name="assets_number" readonly>
+                            <input type="text" class="form-control" value="{{ $checkOut->assets->asset_number }}" name="asset_number" readonly>
                         </div>
                     </div>
                     <div class="form-group row">

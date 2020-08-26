@@ -10,6 +10,8 @@
                 <form class="form-horizontal" method="POST" action="{{ route('checkIns.store') }}">
                     @csrf
                 
+                    <input type="hidden" name="status" value="0">
+                    <input type="hidden" name="remarks" value="returned">
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-3 col-form-label">Type: </label>
                         <div class="col-9">
@@ -45,7 +47,7 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-3 col-form-label">Date Return: </label>
                     <div class="col-9">
-                        <input class="form-control" id="date_issued" type="date" name="date_issued">
+                        <input class="form-control" id="date_issued" type="date" name="date_issued" require>
                     </div>
                 </div>
 
@@ -60,8 +62,8 @@
 
             <div class="modal-footer">
                 
-                <button type="submit" class="btn btn-primary waves-effect waves-light">Yes</button>
-                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">No</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancel</button>
 
                 </form>
                 

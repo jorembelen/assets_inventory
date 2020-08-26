@@ -39,10 +39,9 @@
                                             <tr>
                                                 <th>SN</th>
                                                 <th>Type</th>
-                                                <th>RITCCO No.</th>
+                                                <th>RITCCO</th>
                                                 <th>Badge</th>
                                                 <th>Name</th>
-                                                {{-- <th>Designation</th> --}}
                                                 <th>Location</th>
                                                 <th>UnitCode</th>
                                                 <th>Description</th>
@@ -64,7 +63,6 @@
                                                     <td>{{ $checkOut->assets->ritcco}}</td>
                                                     <td>{{ $checkOut->employees->badge}}</td>
                                                     <td>{{ $checkOut->employees->name}}</td>
-                                                    {{-- <td>{{ $checkOut->employees->designation}}</td> --}}
                                                     <td>{{ $checkOut->employees->location}}</td>
                                                     <td>{{ $checkOut->employees->unit_code}}</td>
                                                     <td>{{ $checkOut->assets->description}}</td>

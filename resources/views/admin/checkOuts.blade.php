@@ -63,13 +63,14 @@
                                             <tr>
                                                 <th>SN</th>
                                                 <th>Type</th>
+                                                <th>RITCCO</th>
                                                 <th>Badge</th>
                                                 <th>Name</th>
                                                 <th>Location</th>
                                                 <th>Unit Code</th>
                                                 <th>Description</th>
                                                 <th>Serial No.</th>
-                                                {{-- <th>Mobile No.</th> --}}
+                                                <th>Mobile No.</th>
                                                 <th>Date</th>
                                                 <th>Remarks</th>
                                                 <th>Action</th>
@@ -84,14 +85,14 @@
                                                     
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $checkOut->assets->type}}</td>
+                                                    <td>{{ $checkOut->assets->ritcco}}</td>
                                                     <td>{{ $checkOut->employees->badge}}</td>
                                                     <td>{{ $checkOut->employees->name}}</td>
-                                                    {{-- <td>{{ $checkOut->employees->designation}}</td> --}}
                                                     <td>{{ $checkOut->employees->location}}</td>
                                                     <td>{{ $checkOut->employees->unit_code}}</td>
                                                     <td>{{ $checkOut->assets->description}}</td>
                                                     <td>{{ $checkOut->assets->serial_number}}</td>
-                                                    {{-- <td>{{ $checkOut->assets->mobile_number}}</td> --}}
+                                                    <td>{{ $checkOut->assets->mobile_number}}</td>
                                                     <td>{{ $checkOut->date_issued->format('M-d-Y')}}</td>
                                                     <td>{{ $checkOut->notes}}</td>
                                                    <td>

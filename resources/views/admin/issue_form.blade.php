@@ -153,11 +153,11 @@ h2 {
 
   @if($checkOut->assets->type == 'Mobile Phone')
   <div class="card-box">
-    <h5>
+  <p class="sub-header">
         I understand that I received this mobile in complete set without damage and agree to return the same complete personally
      during the clearance process or when required. Any missing accessories will be on my account when returned. I also understand 
      that if I have a mobile allowance, it will be stopped upon receiving this mobile.
-    </h5>
+    </p>
   </div>
   @endif  
   <br><br>
