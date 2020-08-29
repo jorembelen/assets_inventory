@@ -24,6 +24,9 @@ Route::middleware(['auth'])->group(function(){
 
 Route::resource('/checkIns', 'CheckInController');
 
+// Users
+Route::resource('/users', 'AdminController');
+
 // CheckOuts
 Route::resource('/checkOuts', 'CheckOutController');
 Route::get('/print/{id}', 'CheckOutController@print')->name('issue.form');
@@ -57,3 +60,4 @@ Route::put('/restore/asset/{id}', 'AssetController@restore')->name('restore.asse
 Route::get('/search/assets', 'AssetController@indexSearch');
 
 });
+

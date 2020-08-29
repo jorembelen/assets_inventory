@@ -60,8 +60,19 @@
                             <li><a href="/search/employees#!">Employees List</a></li>
                         </ul>
                     </li>
+                    @if ( Auth()->user()->role == 1 )
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fas fa-user-friends"></i>
+                            <span>  Users</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li><a href="/users#!">Users List</a></li>
+                        </ul>
+                    </li>
 
-                     <!-- <li>
+                     <li>
                         <a href="javascript: void(0);">
                             <i class="fas fa-file-import"></i>
                             <span>  Import Data</span>
@@ -72,8 +83,8 @@
                             <li><a href="{{ route('import.index') }}"> Import Assets</a></li>
                             <li><a href="{{ route('checkOut.import') }}"> Import Issued Assets</a></li>
                         </ul>
-                    </li>  -->
-        
+                    </li> 
+                    @endif
                 </ul>
 
             </div>

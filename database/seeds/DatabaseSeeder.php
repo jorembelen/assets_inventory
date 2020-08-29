@@ -17,98 +17,10 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Jorem Belen',
             'username' => 'jorem.belen',
-            'email' => 'jorembelen@gmail.com',
+            'role' => '1',
+            // 'email' => 'jorembelen@gmail.com',
             'password' => bcrypt('password'),
         ]);
-
-        User::create([
-            'name' => 'Aslam Khan',
-            'username' => 'aslam.khan',
-            'email' => 'aslam.khan@rezayat.net',
-            'password' => bcrypt('man602'),
-        ]);
-
-        User::create([
-            'name' => 'Jilbert Mejia',
-            'username' => 'jilbert.mejia',
-            'email' => 'jilbert.mejia@rezayat.net',
-            'password' => bcrypt('man602'),
-        ]);
-
-        User::create([
-            'name' => 'Kenneth Magalona',
-            'username' => 'kenneth.magalona',
-            'email' => 'kenneth.magalona@rezayat.net',
-            'password' => bcrypt('man602'),
-        ]);
-
-        User::create([
-            'name' => 'Ahmed Elawaad',
-            'username' => 'ahmed.elawaad',
-            'email' => 'ahmed.elawaad@rezayat.net',
-            'password' => bcrypt('man602'),
-        ]);
-
-        // Asset::create([
-        //     'ritcco' => '30-00235',
-        //     'type' => 'Desktop',
-        //     'description' => 'HP PRO 500 MT',
-        //     'serial_number' => 'TRF2080785',
-        //     'status' => '0',
-        //     'asset_number' => 'RCLCD-00235',
-        // ]);
-
-        // Asset::create([
-        //     'ritcco' => '30-00226',
-        //     'type' => 'Desktop',
-        //     'description' => 'HP 3400 MT',
-        //     'serial_number' => 'TRF20807V5',
-        //     'status' => '0',
-        //     'asset_number' => 'RCLCD-00225',
-        // ]);
-
-        // Employee::create([
-        //     'name' => 'Jorem Belen',
-        //     'badge' => '31037172',
-        //     'designation' => 'IT - Support',
-        //     'nationality' => 'PH',
-        //     'location' => 'DRSD Building Construction',
-        //     'unit_code' => '31428',
-        // ]);
-
-        // Employee::create([
-        //     'name' => 'Arnel Palma',
-        //     'badge' => '31037175',
-        //     'designation' => 'Programmer',
-        //     'nationality' => 'PH',
-        //     'location' => 'DRSD Building Construction',
-        //     'unit_code' => '31428',
-        // ]);
-
-        // Employee::create([
-        //     'name' => 'Ramjan Ali',
-        //     'badge' => '30035895',
-        //     'designation' => 'Programmer',
-        //     'nationality' => 'IN',
-        //     'location' => 'DRSD Building Construction',
-        //     'unit_code' => '31428',
-        // ]);
-        // Employee::create([
-        //     'name' => 'Masoud Eid Abdullah Al Hamdi',
-        //     'badge' => '30035902',
-        //     'designation' => 'Programmer',
-        //     'nationality' => 'EG',
-        //     'location' => 'DRSD Building Construction',
-        //     'unit_code' => '31428',
-        // ]);
-        // Employee::create([
-        //     'name' => 'Selvaraj Alagu',
-        //     'badge' => '30035918',
-        //     'designation' => 'Programmer',
-        //     'nationality' => 'IN',
-        //     'location' => 'DRSD Building Construction',
-        //     'unit_code' => '31428',
-        // ]);
 
     }
 }
