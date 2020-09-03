@@ -7,10 +7,13 @@
                 <h4 class="modal-title" id="myModalLabel"><img class="icon-colored" src="/admin/assets/images/icons/multiple_devices.svg" title="edit_image.svg"> Update {{ $asset->description}}</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('assets.update', $asset->id) }}">
-                    @csrf
+                <form class="form-horizontal" method="POST" action="{{ route('assets.update', $asset->id) }}" enctype="multipart/form-data">
+                    
+                {{ method_field('PUT') }}
                     <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="user" value="{{ Auth::user()->name }}">
+
                     <div class="form-group row">
                         <label for="type" class="col-3 col-form-label">Type</label>
                         <div class="col-9">
@@ -70,6 +73,21 @@
                     </div>
 
                     <div class="form-group row">
+                    <div class="col-6">
+                    <a href="{{url('../')}}/images/uploads/{{ $asset->image ? $asset->image : 'no_image.jpg'}}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{url('../')}}/images/uploads/{{ $asset->image ? $asset->image : 'no_image.jpg'}}" alt="image" class="img-fluid img-thumbnail" width="200"></a>
+                    </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="type" class="col-3 col-form-label">Asset Image</label>
+                        <div class="col-9">
+                            <input type="file" class="form-control" value="{{ $asset->image }}" name="image">
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-group row">
                         <label for="type" class="col-3 col-form-label"> Purchased Date</label>
                         <div class="col-9">
                             <input type="date" class="form-control" value="{{ $asset->purchased_date ? $asset->purchased_date->toDateString() : null }}" name="purchased_date">
@@ -90,6 +108,7 @@
                         <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancel</button>
         
                         </form>
+
                         
                     </div>
                 </div><!-- /.modal-content -->
@@ -98,7 +117,6 @@
 
 
 
-        {{-- Delete --}}
 
         <div id="delete{{ $asset->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
@@ -127,3 +145,6 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
+
+
+  

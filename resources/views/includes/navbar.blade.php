@@ -18,23 +18,7 @@
                                 <h6 class="text-overflow m-0">Welcome !</h6>
                             </div>
 
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="fe-user"></i>
-                                <span>Profile</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="fe-settings"></i>
-                                <span>Settings</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="fe-lock"></i>
-                                <span>Lock Screen</span>
-                            </a>
+                        
 
                             <div class="dropdown-divider"></div>
 

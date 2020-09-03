@@ -49,8 +49,8 @@
                                         @csrf
                                         <div class="form-group row">
                                             <div class="col-12">
-                                                <label for="emailaddress">Email address</label>
-                                                <input id="email" type="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                                                <label for="username">Username</label>
+                                                <input id="username" type="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
 
                                 @if ($errors->has('username'))
                                     <span class="invalid-feedback" role="alert">
@@ -62,7 +62,6 @@
 
                                         <div class="form-group row">
                                             <div class="col-12">
-                                                {{-- <a href="page-recoverpw.html" class="text-muted float-right"><small>Forgot your password?</small></a> --}}
                                                 <label for="password">Password</label>
                                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 

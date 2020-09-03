@@ -63,8 +63,8 @@
                     @if ( Auth()->user()->role == 1 )
                     <li>
                         <a href="javascript: void(0);">
-                            <i class="fas fa-user-friends"></i>
-                            <span>  Users</span>
+                            <i class=" fas fa-user-lock"></i>
+                            <span>  User Management</span>
                             <span class="menu-arrow"></span>
                         </a>
                         <ul class="nav-second-level" aria-expanded="false">

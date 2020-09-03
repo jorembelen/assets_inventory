@@ -59,5 +59,7 @@ Route::put('/scrap/asset/{id}', 'AssetController@scrapAsset')->name('scrap.asset
 Route::put('/restore/asset/{id}', 'AssetController@restore')->name('restore.asset');
 Route::get('/search/assets', 'AssetController@indexSearch');
 
+Route::get('store_image/fetch_image/{id}', 'AssetController@fetch_image');
+
 });
 

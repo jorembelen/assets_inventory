@@ -22,6 +22,7 @@ class CreateAssetsTable extends Migration
             $table->string('serial_number');
             $table->string('mobile_number')->nullable();
             $table->string('asset_number')->nullable();
+            $table->string('image')->nullable();
             $table->date('purchased_date')->nullable();
             $table->boolean('status')->default(0);
             $table->string('remarks')->nullable();

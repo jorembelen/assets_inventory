@@ -24,7 +24,9 @@ class AssetController extends Controller
      */
     public function index()
     {
+       
 
+        
         $assets = Asset::where('status', '0')
         ->orWhere('status', '=', 1)
         ->with('employees')
@@ -41,8 +43,10 @@ class AssetController extends Controller
         return view('admin.assets')
         ->with('assets', $assets)
         ->with('employees', $employees)
+        ->with('response')
         ->with('checkOuts', $checkOuts);
     }
+
 
     public function indexSearch()
     {
@@ -187,7 +191,8 @@ class AssetController extends Controller
         $validator = Validator::make($request->all(), [
             'type' => 'required',
             'description' => 'required',
-            'serial_number' => 'required'
+            'serial_number' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5048',
         ]);
 
         if ($validator->fails()) {
@@ -199,8 +204,30 @@ class AssetController extends Controller
 
             return back()->with('errors', 'Serial Number already exist!');
          }
+
+         $input = $request->all();
   
-         Asset::create($request->all());
+         if($request->hasfile('image')) {
+            $file = $request->file('image');
+            // get the name of the image
+            $extension = $file->getClientOriginalExtension();
+            $filename['imagename'] = time() . '.' .$extension;
+
+            // dd($filename);
+            $destinationPath = public_path('/images/uploads/', $filename);
+            $file->move($destinationPath, $filename['imagename']);
+
+            $input['image'] = $filename['imagename'];
+        //  } else {
+
+        //     $pic_path = 'no_image.jpg';
+
+        //     $input['image'] = $pic_path;
+
+         }
+
+        Asset::create($input);
+
 
          return redirect('/assets')->with('success', 'Asset Has Been Added Successfully');
     }
@@ -239,7 +266,8 @@ class AssetController extends Controller
         $validator = Validator::make($request->all(), [
             'type' => 'required',
             'description' => 'required',
-            'serial_number' => 'required'
+            'serial_number' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5048',
         ]);
 
         if ($validator->fails()) {
@@ -248,8 +276,33 @@ class AssetController extends Controller
 
         $assets = Asset::findOrFail($id);
 
-        $assets->update($request->all());
+       
+        if($request->hasfile('image')) {
+            $file = $request->file('image');
 
+            // Delete old image from file
+           if($assets->image != '') {
+            unlink(public_path('/images/uploads/') . $assets->image);
+
+           }
+            // get the name of the image
+            $extension = $file->getClientOriginalExtension();
+            $filename['imagename'] = time() . '.' .$extension;
+
+            // dd($filename);
+            $destinationPath = public_path('/images/uploads/', $filename);
+            $file->move($destinationPath, $filename['imagename']);
+
+            $input = $request->all();
+            $input['image'] = $filename['imagename'];
+            $assets->update($input);
+
+           } else {
+
+            $assets->update($request->all());
+
+           }
+    
 
          return redirect('/assets')->with('success', 'Asset Has Been Updated Successfully');
     }
@@ -266,7 +319,13 @@ class AssetController extends Controller
     {
         $asset = Asset::findOrFail($id);
 
-        $asset->delete();
+        // Delete image from file
+        if($asset->image) {
+            unlink(public_path('/images/uploads/') . $asset->image);
+
+            $asset->delete();
+
+        }
 
         Alert::success('Success', 'Asset Has Been Deleted Successfully');
 

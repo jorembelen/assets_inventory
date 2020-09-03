@@ -7,7 +7,7 @@
                 <h4 class="modal-title" id="myModalLabel"><img class="icon-colored" src="/admin/assets/images/icons/add_image.svg" title="add_image.svg"> Add Asset</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('assets.store') }}">
+                <form class="form-horizontal" method="POST" action="{{ route('assets.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
                         <label for="type" class="col-3 col-form-label">Type</label>
@@ -66,6 +66,13 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="type" class="col-3 col-form-label"> Asset Image</label>
+                        <div class="col-9">
+                            <input type="file" class="form-control"  name="image">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="type" class="col-3 col-form-label"> Purchased Date</label>
                         <div class="col-9">
                             <input type="date" class="form-control" name="purchased_date">
@@ -92,4 +99,3 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-

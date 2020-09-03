@@ -112,6 +112,7 @@
                                                         <a href="/scrap#!"> <span class="badge badge-danger">Scrap</a>  
                                                         @endif
                                                     </td>
+                                                   
                                                     <td>
 
                                                         <div class="btn-group">

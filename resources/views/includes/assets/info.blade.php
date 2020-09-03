@@ -63,12 +63,20 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-3 col-form-label"> Purchased Date -</label>
+                    <label for="inputEmail3" class="col-6 col-form-label"> Purchased Date -</label>
                     <div class="col-9">
                         <h5>{{ $asset->purchased_date ? $asset->purchased_date->format('M-d-Y') : null }}</h5>
                     </div>
                 </div>
 
+                <div class="form-group row">
+                <!-- <label for="inputEmail3" class="col-3 col-form-label">Asset Photo<label> -->
+                    <div class="col-sm-6">
+                    <a href="{{url('../')}}/images/uploads/{{ $asset->image ? $asset->image : 'no_image.jpg'}}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{url('../')}}/images/uploads/{{ $asset->image ? $asset->image : 'no_image.jpg'}}" alt="" class="img-fluid"></a>
+                    </div>
+                </div>
+                
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-3 col-form-label">Remarks -</label>
                     <div class="col-9">
@@ -76,6 +84,7 @@
                     </div>
                 </div>
 
+              
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-3 col-form-label">Updated by -</label>
                     <div class="col-9">

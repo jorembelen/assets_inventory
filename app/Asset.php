@@ -35,6 +35,7 @@ class Asset extends Model
         'asset_number',
         'purchased_date',
         'status',
+        'image',
         'updated_by',
         'remarks'
     ];

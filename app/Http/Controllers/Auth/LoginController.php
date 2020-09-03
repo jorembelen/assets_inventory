@@ -43,24 +43,34 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function login(Request $request)
-    {   
-        $input = $request->all();
+    // public function login(Request $request)
+    // {   
+    //     $input = $request->all();
   
-        $this->validate($request, [
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+    //     $this->validate($request, [
+    //         'username' => 'required',
+    //         'password' => 'required',
+    //     ]);
   
-        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
-        {
-            return redirect()->route('home');
-        }else{
-            return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
-        }
+    //     $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'username' : 'username';
+    //     if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
+    //     {
+    //         return redirect()->route('home');
+    //     }else{
+    //         return redirect()->route('login')
+    //             ->with('error','Username And Password Are Wrong.');
+    //     }
           
+    // }
+
+       /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
     }
 
 }

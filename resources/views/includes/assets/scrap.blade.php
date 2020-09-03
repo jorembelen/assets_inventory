@@ -48,6 +48,7 @@
                                                 <th>Description</th>
                                                 <th>Serial No.</th>
                                                 <th>Mobile No.</th>
+                                                <!-- <th>Image</th> -->
                                                 <th>Remarks</th>
                                                 <th>Status</th>
                                                 <th>Tools</th>
@@ -64,6 +65,9 @@
                                                     <td>{{ $asset->description}}</td>
                                                     <td>{{ $asset->serial_number}}</td>
                                                     <td>{{ $asset->mobile_number}}</td>
+                                                    <!-- <td>
+                                                    <a target="_blank" href="{{url('../')}}/images/uploads/{{ $asset->image ? $asset->image : 'no_image.jpg'}}"><img src="{{url('../')}}/images/uploads/{{ $asset->image ? $asset->image : 'no_image.jpg'}}"  width="50px;" height="40px;" alt="No Image"></a>
+                                                    </td> -->
                                                     <td>{{ $asset->remarks}}</td>
                                                     <td>
                                                         <a href="#" data-toggle="modal"><span class="badge badge-danger">Scrap</span></a>
@@ -75,6 +79,7 @@
                                                             <div class="dropdown-menu">
 
                                                                 <a class="btn btn-outline-primary btn-rounded waves-effect width-md waves-light" role="button" data-toggle="modal" data-target="#previous{{ $asset->id }}"> <i class="  fas fa-info"></i> Info</a>
+                                                                <a class="btn btn-outline-warning btn-rounded waves-effect width-md waves-light" role="button" data-toggle="modal" data-target="#edit{{ $asset->id }}"> <i class="  far fa-edit"></i> Update</a>
                                                                 <a class="btn btn-outline-success btn-rounded waves-effect width-md waves-light" role="button" data-toggle="modal" data-target="#restore{{ $asset->id }}"> <i class="  fas fa-trash-restore"></i> Restore</a>
                                                                
                                                             </div>
@@ -99,6 +104,7 @@
                     @foreach ($assets as $asset)
                     @include('includes.assets.restore')
                     @include('includes.assets.info_prev')
+                    @include('includes.assets.edit_delete')
                     @endforeach
                     
 
